@@ -43,7 +43,7 @@ public class UserService {
         List<WebSeries> webSeries = webSeriesRepository.findAll();
         for(WebSeries webSeries1 : webSeries){
             int ageLimit = webSeries1.getAgeLimit();
-            if(age >= ageLimit){
+            if(age <= ageLimit){
                 if(subscription.getSubscriptionType() == webSeries1.getSubscriptionType()){
                     cnt++;
                 }
