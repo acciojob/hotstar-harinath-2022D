@@ -1,6 +1,7 @@
 package com.driver.controllers;
 
 
+import com.driver.model.SubscriptionType;
 import com.driver.model.User;
 import com.driver.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
