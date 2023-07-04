@@ -59,7 +59,7 @@ public class SubscriptionService {
         //update the subscription in the repository
         User user = userRepository.findById(userId).get();
         Subscription subscription = user.getSubscription();
-        if(subscription.getSubscriptionType() == SubscriptionType.ELITE) throw new Exception("Already the best Subscription");
+        if(subscription.getSubscriptionType().equals(SubscriptionType.ELITE)) throw new Exception("Already the best Subscription");
 
         Integer prevAmt = subscription.getTotalAmountPaid();
         int noOfSub = subscription.getNoOfScreensSubscribed();
@@ -67,7 +67,7 @@ public class SubscriptionService {
         Integer amtToPaid = 0;
         Integer currPrice = 0;
 
-        if(subscription.getSubscriptionType() == SubscriptionType.BASIC){
+        if(subscription.getSubscriptionType().equals(SubscriptionType.BASIC)){
             subscription.setSubscriptionType(SubscriptionType.PRO);
             currPrice = 800 + (250 * noOfSub);
         }else{
@@ -77,7 +77,8 @@ public class SubscriptionService {
 
         subscription.setTotalAmountPaid(currPrice);
         user.setSubscription(subscription);
-        userRepository.save(user);
+        //userRepository.save(user);
+        subscriptionRepository.save(subscription);
         amtToPaid = currPrice - prevAmt;
 
         return amtToPaid;
