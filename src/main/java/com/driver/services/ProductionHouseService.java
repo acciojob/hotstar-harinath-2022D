@@ -14,8 +14,11 @@ public class ProductionHouseService {
     ProductionHouseRepository productionHouseRepository;
 
     public Integer addProductionHouseToDb(ProductionHouseEntryDto productionHouseEntryDto){
-
-        return  null;
+        String name = productionHouseEntryDto.getName();
+        ProductionHouse productionHouse = new ProductionHouse(name);
+       // productionHouse.setRatings(0);
+        productionHouseRepository.save(productionHouse);
+        return  0;
     }
 
 
